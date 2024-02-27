@@ -27,4 +27,8 @@ warmStrategyCache({
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
 // TODO: Implement asset caching
-registerRoute();
+registerRoute(caches.open("pwa-assets")
+.then(cache => {
+  cache.addAll(["styles.css", "app.js","logo.png","database.js", "editor.js","header.js","index.js","install.js "]); // it stores two resources
+});
+);
